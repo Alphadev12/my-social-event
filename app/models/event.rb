@@ -34,4 +34,6 @@ class Event < ApplicationRecord
 			errors.add(:duration, "La durer doit être un multiple de 5")
 		end
 	end
+
+	belongs_to :admin, class_name: 'User'
 end
