@@ -25,13 +25,13 @@ class Event < ApplicationRecord
 	presence: true
 
 	def validate_start_date?
-		if start_date < Time.now
+		if start_date && start_date < Time.now
 			errors.add(:start_date, "La date ne doit pas être une date antérieur")
 		end
 	end
 
 	def validate_duration?
-		unless duration > 0 && duration % 5 == 0
+		unless duration && duration > 0 && duration % 5 == 0
 			errors.add(:duration, "La durer doit être un multiple de 5")
 		end
 	end
