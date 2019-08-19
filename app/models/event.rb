@@ -19,6 +19,7 @@ class Event < ApplicationRecord
 
 	validates :price,
 	presence: true
+	validates_numericality_of :price, :greater_than => 0, :less_than => 1001
 
 	validates :location,
 	presence: true
