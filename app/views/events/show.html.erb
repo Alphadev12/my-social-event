@@ -1,2 +1,27 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="card my-3">
+  <div class="card-header text-center">
+    <%= @event.title %>
+  </div>
+  <div class="card-body">
+    <label>
+      Date de début: <%= @event.start_date %> 
+    </label> <br>
+    <label>
+      Duration: <%= @event.duration %> 
+    </label> <br>
+    <label>
+      Description: <%= @event.description %> 
+    </label> <br>
+    <label>
+      Price: <%= @event.price %> 
+    </label> <br>
+    <label>
+      Location: <%= @event.location %> 
+    </label>
+    <br>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
