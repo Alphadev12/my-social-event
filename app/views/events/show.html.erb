@@ -55,10 +55,23 @@
   </div>
 
   <% if user_signed_in? %>
-    <% if current_user != @event.admin && @event.attendees.include?(current_user) == false %>
-    <div class="card-footer text-muted">
-      <button class="btn btn-success">Rejoindre l'événement</button>
-    </div>
+    <% if @event.admin != current_user && @event.attendees.include?(current_user) == false %>
+      <div class="card-footer text-muted">
+        <%= link_to "Rejoindre l'événement", new_event_participation_path(@event.id), class: 'btn btn-success' %>
+      </div>
     <% end %>
+
+    <% if @event.attendees && @event.attendees.include?(current_user) == true %>
+      <div class="card-footer">
+        <% if flash[:success] %>
+          <span class="text-info">
+            <%= flash[:success] %>
+          </span>
+        <% else %>
+          <span class="text-info">Vous participez déjà à cet évenement</span>
+        <% end %>
+      </div>
+    <% end %>
+
   <% end %>
 </div>

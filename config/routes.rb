@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 	resources :users, only: [:show]
   
-	resources :events
-
+	resources :events do
+    resources :participations
+  end
+  
   get 'static_pages/index'
   get 'static_pages/secret'
 
