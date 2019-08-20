@@ -3,25 +3,62 @@
     <%= @event.title %>
   </div>
   <div class="card-body">
+    <table>
+      <tr>
+        <td>Créateur de l'évenement:</td>
+        <td class="pl-2"><%= @event.admin.email %></td>
+      </tr>
+      <tr>
+        <td>Date de début:</td>
+        <td class="pl-2"><%= @event.start_date %></td>
+      </tr>
+      <tr>
+        <td>Duré:</td>
+        <td class="pl-2"><%= @event.duration %></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td class="pl-2"><%= @event.description %></td>
+      </tr>
+      <tr>
+        <td>Prix:</td>
+        <td class="pl-2"><%= @event.price %></td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td class="pl-2"><%= @event.location %></td>
+      </tr>
+    </table>
+
+
+    <!-- <label>
+      Créateur de l'évenement: <%= @event.admin.email %> 
+    </label> <br>
+
     <label>
       Date de début: <%= @event.start_date %> 
-    </label> <br>
-    <label>
-      Duration: <%= @event.duration %> 
-    </label> <br>
-    <label>
+    </label> <br> -->
+    <!-- <label>
+      Duré: <%= @event.duration %> 
+    </label> <br> -->
+    <!-- <label>
       Description: <%= @event.description %> 
-    </label> <br>
-    <label>
-      Price: <%= @event.price %> 
-    </label> <br>
-    <label>
+    </label> <br> -->
+    <!-- <label>
+      Prix: <%= @event.price %> 
+    </label> <br> -->
+    <!-- <label>
       Location: <%= @event.location %> 
     </label>
-    <br>
+    <br> -->
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
+
+  <% if user_signed_in? %>
+    <% if current_user != @event.admin && @event.attendees.include?(current_user) == false %>
+    <div class="card-footer text-muted">
+      <button class="btn btn-success">Rejoindre l'événement</button>
+    </div>
+    <% end %>
+  <% end %>
 </div>
