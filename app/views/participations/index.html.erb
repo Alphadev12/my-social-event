@@ -1,0 +1,8 @@
+<div class="">
+	<h1 class="text-center mt-2">Listes des participants</h1>
+	<ul>
+		<% @event.attendees.each do |attendee| %>
+			<li><%= attendee.email %></li>
+		<% end %>
+	</ul>
+</div>

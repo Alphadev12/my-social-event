@@ -1,4 +1,11 @@
+  <% if @event.admin == current_user %>
+  <div class="text-center my-4">
+    <%= link_to "Mon espace évenement", event_participations_path(@event), class: 'btn btn-primary'%>
+  </div>
+  <% end %>
 <div class="card my-3">
+
+
   <div class="card-header text-center">
     <%= @event.title %>
   </div>
@@ -29,6 +36,7 @@
         <td class="pl-2"><%= @event.location %></td>
       </tr>
     </table>
+  </div>
 
 
     <!-- <label>
@@ -52,7 +60,6 @@
     </label>
     <br> -->
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-  </div>
 
   <% if user_signed_in? %>
     <% if @event.admin != current_user && @event.attendees.include?(current_user) == false %>
