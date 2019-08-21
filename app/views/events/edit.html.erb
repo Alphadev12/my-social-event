@@ -1,2 +1,50 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<div class="text-center m-4">
+	<h1>Edition d'un évenement</h1>
+</div>
+
+<% if @event %>
+	<% if @event.errors.any? %>
+		<div class="alert alert-danger text-center">
+			<p>Nous n'avons pas réussi à modifier l'évenement pour la (ou les) raison(s) suivante(s) :</p>
+			
+			<ul>
+				<% @event.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+
+		</div>
+	<% end %>
+<% end %>
+
+<div class="col-6 offset-3 pb-5">
+	<%= form_tag url_for(action: 'update'), method: 'put'%>
+		<div class="form-group">
+			<label for="start_date">Date de début :</label>
+			<input type="date" class="form-control" id="start_date" name="start_date" value="<%= @old_date.year %>-<%= @month %>-<%= @day %>">
+		</div>
+		
+		<div class="form-group">
+			<label for="duration">Duration</label>
+			<input type="number" class="form-control" id="duration" name="duration" value="<%= @event.duration %>">
+		</div>
+		<div class="form-group">
+			<label for="title">Title :</label>
+			<input type="text" class="form-control" id="title" name="title" value="<%= @event.title %>">
+		</div>
+		<div class="form-group">
+			<label for="description">Description :</label>
+			<input type="text" class="form-control" id="description" name="description" value="<%= @event.description %>">
+		</div>
+		<div class="form-group">
+			<label for="price">Price :</label>
+			<input type="number" class="form-control" id="price" name="price" value="<%= @event.price %>">
+		</div>
+
+		<div class="form-group">
+			<label for="price">Location :</label>
+			<input type="text" class="form-control" id="location" name="location" value="<%= @event.location %>">
+		</div>
+		<button type="submit" class="btn btn-primary">Modifier</button>
+	</form>
+</div>

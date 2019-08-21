@@ -1,4 +1,10 @@
 <div class="">
+	
+	<div class="text-center my-3">
+		<%= link_to "Editer", edit_event_path(@event), class: 'btn btn-info' %>
+		<%= link_to "Supprimer", event_path(@event), class: 'btn btn-danger', method: :delete %>
+	</div>
+
 	<h1 class="text-center mt-2">Listes des participants</h1>
 	<ul>
 		<% @event.attendees.each do |attendee| %>

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  include EventsHelper
+
   def index
     @events = Event.all
   end
@@ -39,11 +41,46 @@ class EventsController < ApplicationController
   end
 
   def edit
+    event_id = params[:id]
+    @event = Event.find(event_id)
+    @old_date = @event.start_date
+
+    date_month
+    date_day
   end
 
   def update
+    event_id = params[:id]
+    @event = Event.find(event_id)
+
+    @start_date = params[:start_date]
+    @duration = params[:duration]
+    @title = params[:title]
+    @description = params[:description]
+    @price = params[:price]
+    @location = params[:location]
+
+    @event.start_date = @start_date
+    @event.duration = @duration
+    @event.title = @title
+    @event.description = @description
+    @event.price = @price
+    @event.location = @location
+
+    if @event.save
+      flash[:success] = "L'évenement a été bien modifié"
+      redirect_to @event
+    else
+      @old_date = @event.start_date
+      render :edit
+    end
   end
 
   def destroy
+    event_id = params[:id]
+    @event = Event.find(event_id)
+    @event.destroy
+
+    redirect_to events_path, :notice => "Un évenement a été supprimé !"
   end
 end
