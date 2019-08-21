@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'avatars/create'
   devise_for :users
-	resources :users, only: [:show]
+	resources :users, only: [:show] do
+    resources :avatars, only: [:create]
+  end
   
 	resources :events do
     resources :participations

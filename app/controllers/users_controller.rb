@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
+  before_action :is_current?, only: [:show]
   def index
   end
 
@@ -21,5 +22,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def is_current?
+    @user = User.find(params[:id])
+    if @user == current_user
+      return true
+    else
+      redirect_to current_user
+    end
   end
 end
