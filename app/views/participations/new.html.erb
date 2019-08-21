@@ -1,4 +1,5 @@
-<%= form_tag event_participations_path do %>
+<% if @event.admin != current_user %>
+  <%= form_tag event_participations_path do %>
     <% if flash[:error].present? %>
       <div id="error_explanation">
         <p><%= flash[:error] %></p>
@@ -7,10 +8,15 @@
     <label class="amount">
       <span>Prix: $ <%= @event.price %></span>
     </label>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="A month's subscription"
+    data-amount="500"
+    data-locale="auto"></script>
+  <% end %>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"
-          data-locale="auto"></script>
+  <% else %>
+    <h1>Vous êtes l'administrateur de cet évenement</h1>
+    <%= link_to "Retour", :root %>
+  <% end %>
 <% end %>

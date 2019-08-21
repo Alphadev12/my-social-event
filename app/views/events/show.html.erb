@@ -80,5 +80,9 @@
       </div>
     <% end %>
 
+  <% else %>
+     <div class="card-footer text-muted">
+        <%= link_to "Rejoindre l'événement", new_event_participation_path(@event.id), class: 'btn btn-success' %>
+      </div>
   <% end %>
 </div>
