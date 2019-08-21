@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   include EventsHelper
 
+  before_action :authenticate_user!, only: [:edit, :destroy]
+  before_action :is_admin?, only: [:edit, :destroy]
   def index
     @events = Event.all
   end
@@ -82,5 +84,14 @@ class EventsController < ApplicationController
     @event.destroy
 
     redirect_to events_path, :notice => "Un évenement a été supprimé !"
+  end
+
+  def is_admin?
+    @event = Event.find(params[:id])
+    if @event.admin == current_user
+      return true
+    else
+      redirect_to '/'
+    end
   end
 end
