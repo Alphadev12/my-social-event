@@ -1,0 +1,4 @@
+<%= form_tag event_pictures_path, multipart: true do %>
+	<%= file_field_tag :picture %>
+	<%= submit_tag "Envoyer" %>
+<% end %>

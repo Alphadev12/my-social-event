@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'avatars/create'
   devise_for :users
 	resources :users, only: [:show] do
     resources :avatars, only: [:create]
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
   
 	resources :events do
     resources :participations
+    resources :pictures, only: [:new, :create]
   end
   
   get 'static_pages/index'

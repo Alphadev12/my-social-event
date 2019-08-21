@@ -40,4 +40,6 @@ class Event < ApplicationRecord
 
 	has_many :attendances
 	has_many :attendees, through: :attendances
+
+	has_one_attached :picture
 end

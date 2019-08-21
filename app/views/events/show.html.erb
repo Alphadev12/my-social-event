@@ -12,6 +12,7 @@
     <%= link_to "Mon espace évenement", event_participations_path(@event), class: 'btn btn-primary'%>
   </div>
   <% end %>
+  
 <div class="card my-3">
 
 
@@ -19,6 +20,14 @@
     <%= @event.title %>
   </div>
   <div class="card-body">
+    <div class="text-center">
+      <%if @event.picture.attached?%>
+        <%= image_tag @event.picture, alt: 'picture' %>
+      <%else%>
+        <p>=== Il n'y a pas encore de photo lié à cet évenement ===</p>
+      <%end%> 
+    </div>
+
     <table>
       <tr>
         <td>Créateur de l'évenement:</td>
