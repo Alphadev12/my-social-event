@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:success] = "L'évenement a été bien ajouter"
-      redirect_to @event
+      redirect_to new_event_picture_path(@event)
     else
       render :new
     end
